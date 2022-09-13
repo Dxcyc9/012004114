@@ -32,29 +32,26 @@ def selectFromDateInfo():
 
 #通过日期查询全国新增
 def selectNewAdd(date):
-    newAdd = db.select_one('dateInfo','date = "'+ str(date)+'"' ,'newAdd')
-    return newAdd
-    # return re.findall('([0-9]+)',str(newAdd))[0]
+    newAdd = db.select_one('dateInfo','date = "'+ date+'"' ,'newAdd')
+    # return newAdd
+    return re.findall('([0-9]+)',str(newAdd))#[0]
 
 #通过日期查询全国新增无症状
 def selectNewAsymptomatic(date):
-    newAsymptomatic = db.select_one('dateInfo','date = "'+ str(date)+'"' ,'newAsymptomatic')
+    newAsymptomatic = db.select_one('dateInfo','date = "'+ date+'"' ,'newAsymptomatic')
     return re.findall('([0-9]+)',str(newAsymptomatic))
 
 #查询省份
 def selectProvince():
-    provinces = db.select_all('areaInfo','date = "8月2日"','area')
-
+    provinces = db.select_all('areaInfo','date = "2022-08-02"','area')
     return provinces
 
 #查询省份新增
 def selectProvinceNewAdd(date,province):
-    newAdd = db.select_one('areaInfo','date = "' + str(date) +'"AND area ="' + str(province) + '"','newAdd')
+    newAdd = db.select_one('areaInfo','date = "' + date +'"AND area ="' + str(province) + '"','newAdd')
     return newAdd
 
 #查询省份无症状
 def selectProvinceAsymptomatic(date,province):
-    newAsymptomatic = db.select_one('areaInfo','date = "' + str(date) +'"AND area ="' + str(province) + '"','newAsymptomatic')
+    newAsymptomatic = db.select_one('areaInfo','date = "' + date +'"AND area ="' + str(province) + '"','newAsymptomatic')
     return newAsymptomatic
-
-print(selectNewAdd('2022-08-01'))
