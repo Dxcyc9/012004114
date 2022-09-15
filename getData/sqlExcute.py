@@ -3,6 +3,8 @@ from Database import Database
 import re
 
 # 设置连接数据库的参数
+from getData import writeToExcel
+
 config = {
     "host": "localhost",
     "port": 3306,
@@ -55,3 +57,14 @@ def selectProvinceNewAdd(date,province):
 def selectProvinceAsymptomatic(date,province):
     newAsymptomatic = db.select_one('areaInfo','date = "' + date +'"AND area ="' + str(province) + '"','newAsymptomatic')
     return newAsymptomatic
+
+#查询该日期各省份新增数据
+def seleceProvinceDataByDate(date):
+    dataList = db.select_all('areaInfo','date = "' + date + '"', 'newAdd')
+    return dataList
+
+#查询该日期各省份新增无症状数据
+def seleceProvinceDataByDateAsy(date):
+    dataList = db.select_all('areaInfo','date = "' + date + '"', 'newAsymptomatic')
+    return dataList
+

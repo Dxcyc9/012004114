@@ -70,7 +70,8 @@ def getDayData(url):
         data['newAdd'] = '0'
     #获取无症状感染
     try:
-        data['newAsymptomatic'] = re.findall('本土(.*?)例', text)[2]
+        data['newAsymptomatic'] = re.findall('本土([0-9]+)例', text)[0]
+        print(data['newAsymptomatic'])
     except:
         data['newAsymptomatic'] = '0'
     #各个省份新增确诊信息
@@ -95,7 +96,7 @@ def getDayData(url):
         areaNewAdd['香港'] = re.findall('香港特别行政区([0-9]+)例', text)[0]
         areaNewAdd['澳门'] = re.findall('澳门特别行政区([0-9]+)例', text)[0]
         areaNewAdd['台湾'] = re.findall('台湾地区([0-9]+)例', text)[0]
-    #插入每日基本信息数据库
+    # 插入每日基本信息数据库
     sqlExcute.insertToDateInfo(data['date'],data['newAdd'],data['newAsymptomatic'])
     #插入各个省份信息
     i = 0

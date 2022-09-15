@@ -58,7 +58,7 @@ def writeToExcel(dateList):
             i += 1
         j+=1
     # 保存
-    workbook.save("疫情通报表.xls")
+    workbook.save("疫情通报表1.1.xls")
 
 #创建全国每日信息表
 def writeCountryInfo(dateList):
@@ -80,5 +80,8 @@ def writeCountryInfo(dateList):
         worksheet.write(i, 2, newAsymptomatic)
         i += 1
     # 保存
-    workbook.save("全国疫情通报表.xls")
+    workbook.save("全国疫情通报表1.1.xls")
 
+dateList = sqlExcute.selectFromDateInfo();
+# writeToExcel(dateList)
+# writeCountryInfo(dateList)
